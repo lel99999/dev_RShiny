@@ -11,3 +11,15 @@ R Shiny WAF Staging and Development
 - A server script file called sever.R
   - Code that does the computational R work "behind the scenes" using functions like hist(), plot()
   - code contains instructions to build the app
+
+
+#### Docker Notes
+- Building the image
+```
+docker build -t my-shinyapp-image .
+```
+
+- Starting the container
+```
+docker run -d --rm -p 3838:3838 my-shinyapp-image
+```

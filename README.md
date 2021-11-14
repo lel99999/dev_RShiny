@@ -24,13 +24,15 @@ ExecStart=/bin/bash -c 'setuid shiny; setgid shiny; /opt/shiny-server/bin/shiny-
 - A use-interface definition (UI) called ui.R
   - code used to set-up layout of web page
   - Title, sliders, widgets, plots, etc.  
- 
-
 
 - A server script file called sever.R
   - Code that does the computational R work "behind the scenes" using functions like hist(), plot()
   - code contains instructions to build the app
 
+#### deploy testApp to shiny-server
+```
+$scp -r testApp/ <shiny-server/ip-address>:/srv/shiny-server/
+```
 
 #### Docker Notes
 - Building the image

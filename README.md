@@ -10,6 +10,8 @@ R Shiny WAF Staging and Development
 $sudo su - -c "R -e \"install.packages('shiny', repos='https://cran.rstudio.com/')\""
 $sudo su - -c "R -e \"install.packages('rmarkdown', repos='https://cran.rstudio.com/')\""
 ```
+![shiny-server page](https://github.com/lel99999/dev_RShiny/blob/main/shiny-server_01-300x376.png) <br/>
+
 - update shiny-server.service to run as shiny <br/>
 Edit file: /etc/systemd/system/shiny-server.service <br/>
 ```

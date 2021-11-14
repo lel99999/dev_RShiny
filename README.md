@@ -29,10 +29,12 @@ ExecStart=/bin/bash -c 'setuid shiny; setgid shiny; /opt/shiny-server/bin/shiny-
   - Code that does the computational R work "behind the scenes" using functions like hist(), plot()
   - code contains instructions to build the app
 
-#### deploy testApp to shiny-server
+#### Deploy testApp to shiny-server
 ```
 $scp -r testApp/ <shiny-server/ip-address>:/srv/shiny-server/
 ```
+You should see the following: <br/>
+![shiny-server testApp](https://github.com/lel99999/dev_RShiny/blob/main/shiny-server-testApp-01.png) <br/>
 
 #### Docker Notes
 - Building the image

@@ -17,6 +17,8 @@ Edit file: /etc/systemd/system/shiny-server.service <br/>
 ```
 ExecStart=/bin/bash -c 'setuid shiny; setgid shiny; /opt/shiny-server/bin/shiny-server --pidfile=/var/run/shiny-server.pid >> /var/log/shiny-server.log 2>&1'
 ```
+- verify shiny-server is listening on default port 3838 <br/>
+![shiny-server listening on 3838](https://github.com/lel99999/dev_RShiny/blob/main/shiny-server-port-01.png) <br/>
 
 #### Shiny Application Components (put ui.R and server.R in folder <app_name>)
 - A use-interface definition (UI) called ui.R

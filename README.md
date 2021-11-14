@@ -1,6 +1,21 @@
 # dev_RShiny
 R Shiny WAF Staging and Development
 
+#### Shiny on RHEL7
+- base R install <br/>
+`$sudo yum iinstall -y R`
+
+- add shiny and rmarkdown packages <br/>
+```
+$sudo su - -c "R -e \"install.packages('shiny', repos='https://cran.rstudio.com/')\""
+$sudo su - -c "R -e \"install.packages('rmarkdown', repos='https://cran.rstudio.com/')\""
+```
+- update shiny-server.service to run as shiny <br/>
+Edit file: /etc/systemd/system/shiny-server.service <br/>
+```
+ExecStart=/bin/bash -c 'setuid shiny; setgid shiny; /opt/shiny-server/bin/shiny-server --pidfile=/var/run/shiny-server.pid >> /var/log/shiny-server.log 2>&1'
+```
+
 #### Shiny Application Components (put ui.R and server.R in folder <app_name>)
 - A use-interface definition (UI) called ui.R
   - code used to set-up layout of web page

@@ -9,19 +9,37 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Assign a friendly name to this host VM
-  config.vm.hostname = "docker-host"
+##  config.vm.hostname = "docker-host"
 
   # Skip checking for an updated Vagrant box
-  config.vm.box_check_update = false
+##  config.vm.box_check_update = false
 
   # Always use Vagrant's default insecure key
-  config.ssh.insert_key = false
+##  config.ssh.insert_key = false
 
   # Spin up a "host box" for use with the Docker provider
   # and then provision it with Docker
-  config.vm.box = "clouddood/RH7.5_baserepo"
-  config.vm.provision "docker"
+## config.vm.box = "clouddood/RH7.5_baserepo"
+##  config.vm.provision "docker"
 
   # Disable synced folders (prevents an NFS error on "vagrant up")
-  config.vm.synced_folder ".", "/vagrant", disabled: true
+##  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.define "RShiny" do |rshiny|
+    rshiny.vm.box = "clouddood/RH7.5_baserepo"
+#   rshiny.vm.hostname = "RShiny"
+    rshiny.vm.hostname = "RShinyDockerHost"
+    rshiny.vm.network "private_network", ip: "192.168.60.158"
+    rshiny.vm.provision "shell", :inline => "sudo echo '192.168.60.158 rshiny.local rshiny' >> /etc/hosts"
+    rshiny.vm.provision "ansible" do |ansible|
+#     ansible.playbook = "deploy_RShiny-Test.yml"
+      ansible.playbook = "deploy_RShiny.yml"
+      ansible.inventory_path = "vagrant_hosts"
+      #ansible.tags = ansible_tags
+      #ansible.verbose = ansible_verbosity
+      #ansible.extra_vars = ansible_extra_vars
+      #ansible.limit = ansible_limit
+    end
+    rshiny.vm.proviion "docker"
+  end
+
 end

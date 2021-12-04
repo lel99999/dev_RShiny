@@ -46,3 +46,11 @@ docker build -t my-shinyapp-image .
 ```
 docker run -d --rm -p 3838:3838 my-shinyapp-image
 ```
+
+#### Docker Notes Centos 7
+- Build image from external file/file not named Dockerfile
+```
+$docker build - < Dockerfile.Centos7
+```
+
+

@@ -57,6 +57,7 @@ RUN systemctl enable shiny-server
 ## app folder
 #COPY /example-app ./app
 #COPY testApp/ /testApp/
+ADD testApp /srv/shiny-server/
 ## renv.lock file
 #COPY /example-app/renv.lock ./renv.lock
 

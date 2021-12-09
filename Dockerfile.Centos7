@@ -44,12 +44,16 @@ CMD ["/usr/sbin/init"]
 
 RUN yum -y install epel-release
 RUN yum -y install R
-RUN R -e \"install.packages(c('shiny', 'rmarkdown', 'devtools', 'RJDBC'), repos='http://cran.rstudio.com/')\"
+##RUN R -e \"install.packages(c('shiny', 'rmarkdown', 'devtools', 'RJDBC'), repos='http://cran.rstudio.com/')\"
+RUN R -e "install.packages('shiny',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('rmarkdown',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('devtools',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('RJDBC',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN yum  -y install --nogpgcheck https://download3.rstudio.org/centos5.9/x86_64/shiny-server-1.4.2.786-rh5-x86_64.rpm
 
 # Start Shiny Server
-RUN systemctl start shiny-server
-RUN systemctl enable shiny-server
+#RUN systemctl start shiny-server
+#RUN systemctl enable shiny-server
 
 
 
@@ -57,14 +61,14 @@ RUN systemctl enable shiny-server
 ## app folder
 #COPY /example-app ./app
 #COPY testApp/ /testApp/
-ADD testApp /srv/shiny-server/
+## ADD ./testApp.tar.gz /srv/shiny-server/testApp
 ## renv.lock file
 #COPY /example-app/renv.lock ./renv.lock
 
 # install renv & restore packages
-RUN Rscript -e 'install.packages("renv")'
-RUN Rscript -e 'renv::consent(provided = TRUE)'
-RUN Rscript -e 'renv::restore()'
+#RUN Rscript -e 'install.packages("renv")'
+#RUN Rscript -e 'renv::consent(provided = TRUE)'
+#RUN Rscript -e 'renv::restore()'
 
 # expose port
 EXPOSE 3838

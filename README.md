@@ -2,7 +2,7 @@
 R Shiny WAF Staging and Development
 
 #### Shiny on RHEL7
-- base R install <br/>
+- base R install (429 packages) <br/>
 `$sudo yum iinstall -y R`
 
 - add shiny and rmarkdown packages <br/>
